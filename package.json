@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd client && npm run dev & cd ../server && npm run dev",
+    "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
     "build": "cd client && npm run build",
     "start": "cd server && npm run start"
   },
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/ocskier/vite-fs-express/issues"
   },
-  "homepage": "https://github.com/ocskier/vite-fs-express#readme"
+  "homepage": "https://github.com/ocskier/vite-fs-express#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
