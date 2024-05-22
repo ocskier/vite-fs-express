@@ -17,7 +17,8 @@ function App() {
 
   // call the getTime function when the component is mounted
   useEffect(() => {
-    getTime()
+    const intervalId = setInterval(() => getTime(),1000)
+    return () => clearInterval(intervalId)
   }, [])
 
   return (
