@@ -9,7 +9,7 @@ const port = process.env.PORT || 3001;
 app.use(express.static(path.join(__dirname, '../client', 'dist')));
 
 app.use((req, res, next) => {
-    console.log(chalk.green(`Request URL: ${req.url}`));
+    console.log(`${chalk.yellow.bold(`Request Method Url: `)} ${chalk.blue(`${req.method} ${req.url}`)}`);
     next();
 });
 
