@@ -2,22 +2,25 @@ const chalk = require('chalk');
 const express = require('express');
 const path = require('path');
 
+const router = require('./routes');
+
 const app = express();
 const port = process.env.PORT || 3001;
+
+// Parse incoming requests with JSON payloads
+app.use(express.json());
+// Parse incoming requests with urlencoded payloads
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the client/dist directory
 app.use(express.static(path.join(__dirname, '../client', 'dist')));
 
 app.use((req, res, next) => {
-    console.log(chalk.green(`Request URL: ${req.url}`));
+    console.log(`${chalk.yellow.bold(`Request Method Url: `)} ${chalk.blue(`${req.method} ${req.url}`)}`);
     next();
 });
 
-// Route to return the current time
-app.get('/api/time', (req, res) => {
-    const currentTime = new Date().toLocaleTimeString();
-    res.json(`Current server time is: ${currentTime}`);
-});
+app.use(router);
 
 // Route all requests to the index.html file
 app.get('*', (req, res) => {
