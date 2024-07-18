@@ -6,7 +6,7 @@ const timeRoutes = require("./time");
 timeRouter.use(
   "/time",
   (req, res, next) => {
-    console.log("Time router is handling this request -", req.query);
+    console.log("Time router is handling this request -", req.query, req.body);
     next();
   },
   timeRoutes
